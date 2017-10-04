@@ -36,8 +36,9 @@ class Dragon(Animal):
         return self
 
     def displayHealth(self):
-        print 'Eek, a dragon! Health of {}: {}'.format(self.name,self.health)
-        return self
+        print 'Eek, a dragon!'
+        super(Dragon, self).displayHealth()
+
 
 
 a1 = Animal('Norman the Cheetah')
