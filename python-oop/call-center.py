@@ -11,7 +11,7 @@ class Call(object):
         self.name = name
         self.number = number
         self.reason = reason
-        #gives the current time plus 'id' minutes for time-sorting testing
+        #gives the current time plus 'id' minutes for testing time
         self.time = (datetime.now() + timedelta(minutes=id)).strftime('%m-%d-%Y %H:%M:%S')
 
     def display(self):
@@ -42,9 +42,6 @@ class CallCenter(object):
         self.size -= 1
         return self
 
-    def __repr__(self):
-       print 'asd'
-
     def info(self):
         print 'The queue has {} calls\n'.format(self.size)
 
@@ -55,10 +52,6 @@ class CallCenter(object):
                 i += 1
         else:
             print 'There are no calls in the queue\n\n'
-
-
-
-        #print(sorted(, key=lambda x: datetime.strptime(x[1], '%d/%m/%Y'), reverse=True))
         return self
 
 #creating an instance of the class
