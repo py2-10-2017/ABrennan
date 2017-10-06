@@ -9,7 +9,6 @@ Methods:
 - add_product: add a product to the store's product list
 - remove_product: should remove a product according to the product name
 - inventory: print relevant information about each product in the store
-
 """
 class Product(object):
     def __init__(self, price, name, weight, brand):
@@ -21,35 +20,13 @@ class Product(object):
 
         self.addTax()
 
-    def sellProd(self):
-        self.status = 'sold'
-        return self
-
     def addTax(self):
         tax = 0.078
         self.cost = round(self.price * (1+tax),2)
-
         return self.cost
 
-    def returnProd(self, reason):
-        if self.status == 'for sale' or self.status == 'used':
-            print "*** You cannot return an item that hasn't been purchased ***"
-        else:
-            if reason == 'defective':
-                print "*** RETURN: item is defective ***"
-                self.status = 'defective'
-                self.price = 0
-                self.addTax()
-            else:
-                print "*** RETURN: item no longer wanted ***"
-                self.status = 'used'
-                self.price = round((self.price * .80),2)
-                self.addTax()
-
-        return self
-
     def displayAll(self):
-        return "Price: ${}\nName: {}\nWeight: {}\nBrand: {}\nCost: ${}\nStatus: {}\n".format(self.price, self.name,self.weight,self.brand,self.cost,self.status)
+        return "Price: ${}\nName: {}\nWeight: {}\nBrand: {}\nCost: ${}\n".format(self.price, self.name,self.weight,self.brand,self.cost)
 
 
 class Store(object):
