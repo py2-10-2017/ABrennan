@@ -22,11 +22,8 @@ class Patient(object):
         self.bed_num = num
 
     def displayPat(self):
-        print '\nPatient ID #', self.PAT_ID - 1
         for attr, val in sorted(self.__dict__.iteritems(), reverse=True):
-            if attr == 'name':
-                print "{}: {}".format(attr, val)
-            elif attr == 'allergies':
+            if attr == 'allergies':
                 out = 'allergies: '
                 i = 0
                 for allergy in self.allergies:
@@ -38,6 +35,9 @@ class Patient(object):
                 print out
             elif attr == 'bed_num':
                 print "bed number: {}".format(val)
+            else:
+                print "{}: {}".format(attr, val)
+        print '\n'
 
 class Hospital(object):
     def __init__(self, name, capacity):
@@ -45,28 +45,46 @@ class Hospital(object):
         self.capacity = capacity
         self.totalCap = capacity
         self.patients = []
+        self.beds = self.init_beds()
+
+    def init_beds(self):
+        beds = []
+        for i in range(0, self.totalCap):
+            beds.append({
+                'bed_id': i,
+                'open': True
+            })
+        return beds
 
     def admit(self, patient):
         if self.capacity > 0:
-            num = str(self.totalCap - self.capacity + 1)
-            patient.bedNum(num)
             self.patients.append(patient)
+            for i in range(0, len(self.beds)):
+                if self.beds[i]["open"]:
+                    num = self.beds[i]['bed_id'] + 1
+                    self.beds[i]['open'] = False
+                    patient.bedNum(num)
+                    break
             self.capacity -= 1
             print '{} was admitted at {}'.format(patient.name, self.name)
         else:
-            print '{} was not admitted to {} - they\'re are no open beds'.format(patient.name, self.name)
+            print '{} was not admitted to {} - there are no open beds'.format(patient.name, self.name)
 
     def discharge(self, patient):
         p = patient.name
         i = 0
         for patient in self.patients:
             if patient.name == p:
-                patient.bedNum('none')
+                for bed in self.beds:
+                    if bed["bed_id"] == patient.bed_num:
+                        bed["Available"] = True
+                        patient.bedNum('none')
+                        break
                 self.patients.pop(i)
                 self.capacity += 1
                 print '{} was discharged from {}'.format(patient.name, self.name)
             else:
-                print '{} cannot be discharged from {} - they\'re not a current patient'.format(p, self.name)
+                print '{} cannot be discharged from {} - they are not a current patient'.format(p, self.name)
             i += 1
 
     def displayHos(self):
