@@ -12,24 +12,28 @@ reverse() - have it display "Reversing" on the screen and decrease the total mil
 Have the first instance ride three times, reverse once and have it displayInfo(). Have the second instance ride twice, reverse twice and have it displayInfo(). Have the third instance reverse three times and displayInfo().
 
 """
-
-class Bike(object):
-    def __init__(self, price, max_speed):
-        self.price = price
-        self.max_speed = max_speed
-        self.miles = 0
-    def ride(self):
-        self.miles = self.miles + 10
-        return self
-    def reverse(self):
-        self.miles = self.miles - 5
-        if self.miles < 0:
+if __name__ != "__main__": #changing so that class is only available if module is imported
+    class Bike(object):
+        def __init__(self, price, max_speed):
+            self.price = price
+            self.max_speed = max_speed
             self.miles = 0
-        return self
-    def displayInfo(self):
-        print "Bike price: {}, maximum speed: {}, total miles: {}".format(self.price, self.max_speed, self.miles)
-        return self
+        def ride(self):
+            self.miles = self.miles + 10
+            return self
+        def reverse(self):
+            self.miles = self.miles - 5
+            if self.miles < 0:
+                self.miles = 0
+            return self
+        def displayInfo(self):
+            print "Bike price: {}, maximum speed: {}, total miles: {}".format(self.price, self.max_speed, self.miles)
+            return self
 
+        def __repr__(self):
+            return "Bike price is ${}, maximum speed is {}, and total miles are {}".format(self.price, self.max_speed, self.miles)
+
+"""
 #creating an instance of the class
 bike1 = Bike("200","25mph")
 bike2 = Bike("100","20mph")
@@ -39,3 +43,4 @@ bike3 = Bike("350","90mph")
 bike1.ride().ride().ride().reverse().displayInfo()
 bike2.ride().ride().reverse().reverse().displayInfo()
 bike3.reverse().reverse().reverse().displayInfo()
+"""

@@ -11,47 +11,51 @@ Methods:
 - Display Info: show all product details.
 Every method that doesn't have to return something should return self so methods can be chained.
 """
+if __name__ != "__main__": #changing so that class is only available if module is imported
+    class Product(object):
+        def __init__(self, price, name, weight, brand):
+            self.price = round(price,2)
+            self.name = name
+            self.weight = weight
+            self.brand = brand
+            self.status = 'for sale'
 
-class Product(object):
-    def __init__(self, price, name, weight, brand):
-        self.price = round(price,2)
-        self.name = name
-        self.weight = weight
-        self.brand = brand
-        self.status = 'for sale'
+            self.addTax()
 
-        self.addTax()
+        def sellProd(self):
+            self.status = 'sold'
+            return self
 
-    def sellProd(self):
-        self.status = 'sold'
-        return self
+        def addTax(self):
+            tax = 0.078
+            self.cost = round(self.price * (1+tax),2)
+            return self.cost
 
-    def addTax(self):
-        tax = 0.078
-        self.cost = round(self.price * (1+tax),2)
-        return self.cost
-
-    def returnProd(self, reason):
-        if self.status == 'for sale' or self.status == 'used':
-            print "*** You cannot return an item that hasn't been purchased ***"
-        else:
-            if reason == 'defective':
-                print "*** RETURN: item is defective ***"
-                self.status = 'defective'
-                self.price = 0
-                self.addTax()
+        def returnProd(self, reason):
+            if self.status == 'for sale' or self.status == 'used':
+                print "*** You cannot return an item that hasn't been purchased ***"
             else:
-                print "*** RETURN: item no longer wanted ***"
-                self.status = 'used'
-                self.price = round((self.price * .80),2)
-                self.addTax()
+                if reason == 'defective':
+                    print "*** RETURN: item is defective ***"
+                    self.status = 'defective'
+                    self.price = 0
+                    self.addTax()
+                else:
+                    print "*** RETURN: item no longer wanted ***"
+                    self.status = 'used'
+                    self.price = round((self.price * .80),2)
+                    self.addTax()
 
-        return self
+            return self
 
-    def displayAll(self):
-        print "Price: ${}\nName: {}\nWeight: {}\nBrand: {}\nCost: ${}\nStatus: {}\n".format(self.price, self.name,self.weight,self.brand,self.cost,self.status)
-        return self
+        def displayAll(self):
+            return "Price: ${}\nName: {}\nWeight: {}\nBrand: {}\nCost: ${}\nStatus: {}\n".format(self.price, self.name,self.weight,self.brand,self.cost,self.status)
 
+        def __repr__(self):
+            return "Price is ${}, name is {}, weight is {}, brand is {}, cost is ${}, and status is {}".format(self.price, self.name,self.weight,self.brand,self.cost,self.status)
+
+
+"""
 #creating an instance of the class
 prod1 = Product(17.991,"Therapeutic Repair Lotion","16 fl oz","Adamia")
 prod2 = Product(7.692,"Vitamins E A D Moisturizing Lotion","16 fl oz","GNC")
@@ -66,3 +70,4 @@ prod3.returnProd('defective').displayAll()
 prod4.returnProd('no longer wanted').displayAll()
 prod5.sellProd().returnProd('defective').displayAll()
 prod6.sellProd().returnProd('no longer wanted').displayAll()
+"""

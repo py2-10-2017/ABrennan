@@ -4,23 +4,26 @@ Create a class called  Car. In the__init__(), allow the user to specify the foll
 Create six different instances of the class Car. In the class have a method called display_all() that returns all the information about the car as a string. In your __init__(), call this display_all() method to display information about the car once the attributes have been defined.
 
 """
+if __name__ != "__main__": #changing so that class is only available if module is imported
+    class Car(object):
+        def __init__(self, price, speed, fuel, mileage):
+            self.price = price
+            self.speed = speed
+            self.fuel = fuel
+            self.mileage = mileage
+            if price > 10000:
+                self.tax = '15%'
+            else:
+                self.tax = '12%'
+            self.displayAll()
 
-class Car(object):
-    def __init__(self, price, speed, fuel, mileage):
-        self.price = price
-        self.speed = speed
-        self.fuel = fuel
-        self.mileage = mileage
-        if price > 10000:
-            self.tax = '15%'
-        else:
-            self.tax = '12%'
-        self.displayAll()
+        def displayAll(self):
+            return "Price: {}\nSpeed: {}\nFuel: {}\nMileage: {}\nTax: {}\n".format(self.price, self.speed,self.fuel,self.mileage,self.tax)
 
-    def displayAll(self):
-        print "Price: {}\nSpeed: {}\nFuel: {}\nMileage: {}\nTax: {}\n".format(self.price, self.speed,self.fuel,self.mileage,self.tax)
-        return self
+        def __repr__(self):
+            return "Car price is ${}, top speed is {}, fuel type is {}, mileage is {}, and tax rate is: {}".format(self.price, self.speed,self.fuel,self.mileage,self.tax)
 
+"""
 #creating an instance of the class
 car1 = Car(20000,"90mph","gas","30mpg")
 car2 = Car(7000,"60mph","gas","20mpg")
@@ -28,3 +31,4 @@ car3 = Car(38000,"110mph","gas","25mpg")
 car4 = Car(9000,"75mph","gas","18mpg")
 car5 = Car(50000,"120mph","hybrid","32mpg")
 car6 = Car(65897,"90mph","hybrid","60mpg")
+"""
