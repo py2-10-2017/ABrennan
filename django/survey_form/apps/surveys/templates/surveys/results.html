@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Survey Form</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'surveys/styles.css' %}">
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>Survey Results</h1>
+      {% if messages %}
+        {% for message in messages %}
+          <p class="error">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+      <p><strong>Name:</strong> {{ request.session.user.full_name }}</p>
+      <p><strong>Location:</strong> {{ request.session.user.location }}</p>
+      <p><strong>Language:</strong> {{ request.session.user.language }}</p>
+      <p><strong>Comments:</strong> {{ request.session.user.comment }}</p>
+    </div>
+    <br />
+    <a href="/" class="btn-primary">Go back</a>
+  </body>
+</html>
