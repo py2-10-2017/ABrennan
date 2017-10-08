@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Word Generator</title>
+  </head>
+  <body>
+      <h1>Random Word Generator</h1>
+      <p>Click for a random word with a length of 14 characters.<p>
+      {% if request.session.word %}
+        <h2>Word: {{ request.session.word }}</h2>
+        <h3>Words generated: {{ request.session.count }}</h3>
+      {% endif %}
+      <form action="/random_word/" method="post">
+    	  {% csrf_token %}
+        <input type="submit" value="New Word">
+      </form>
+      <form action="/random_word/reset/" method="post">
+    	  {% csrf_token %}
+        <input type="submit" value="Reset">
+      </form>
+  </body>
+</html>
