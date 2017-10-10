@@ -7,9 +7,6 @@ from django.utils import timezone
 def index(request):
     start = timezone.localtime(timezone.now())
     time = {
-        #'now': timezone.localtime(timezone.now())
-        #'now': df.format('B d Y')
-        #'now': my_date.strftime(format)
         'now':start.strftime("%I:%M%p on %B %d, %Y ")
     }
 
