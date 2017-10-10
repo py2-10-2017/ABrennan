@@ -1,0 +1,93 @@
+.wrap {
+  width: 900px;
+  margin: 100px auto;
+  position: relative;
+  font-family: sans-serif;
+}
+
+.col-two {
+  display: inline-block;
+  width:49%;
+  vertical-align: top;
+}
+
+.btn-primary {
+  background: blue;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 12px 32px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: none;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background: darkblue;
+}
+
+.group {
+  margin-bottom: 20px;
+  width: 300px;
+}
+
+.group label {
+  color: #3a3a3a;
+  display: block;
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.group input {
+  border: 1px solid darkblue;
+  background-color: transparent;
+  font-size: 18px;
+  padding: 5px 0;
+  width: 100%;
+}
+
+.group input[type='radio'],
+.group input[type='checkbox'] {
+  width: auto;
+}
+
+h3 span {
+  text-transform: uppercase;
+}
+
+p:first-of-type {
+  margin-top: 100px;
+}
+
+.clear-words {
+  position: absolute;
+  top: 30px;
+  right: 0;
+}
+
+.error {
+  color: darkred;
+}
+
+.red {
+  color: red;
+}
+
+.blue {
+  color: blue;
+}
+
+.green {
+  color: green;
+}
+
+.purple {
+  color: purple;
+}
+
+.font-large {
+  font-size: 200%;
+}

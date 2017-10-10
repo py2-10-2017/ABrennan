@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Survey Form</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'words/styles.css' %}">
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="col-two">
+        <h1>Add a New Word</h1>
+        {% if messages %}
+          {% for message in messages %}
+            <p class="error">{{ message }}</p>
+          {% endfor %}
+        {% endif %}
+        <form action="/session_words/add/" method="post" name="add_words">
+          {% csrf_token %}
+          <div class="group">
+            <label for="word">New word</label>
+            <input id="word" name="word" type="text" value="">
+          </div>
+
+          <div class="group">
+            <label for="color">Choose a color</label>
+            <input type="radio" name="color" value="red"> Red<br>
+            <input type="radio" name="color" value="blue"> Blue<br>
+            <input type="radio" name="color" value="green"> Green<br>
+            <input type="radio" name="color" value="purple"> Purple
+          </div>
+
+          <div class="group">
+            <label for="font">Font size</label>
+            <input id="font" type="checkbox" name="font" value="font-large">Larger<br>
+          </div>
+          <input type="hidden" name="times" value="{{ now }}">
+          <input class="btn-primary" id="submit" name="submit" type="submit" value="Add word">
+        </form>
+      </div>
+      <div class="col-two">
+        {% if request.session.newWords %}
+          <a href="/session_words/clear" class="btn-primary clear-words">Clear words</a>
+        {% endif %}
+        {% for newWords in request.session.newWords %}
+          <p><span class="{{ newWords.color }} {{ newWords.font }}">{{ newWords.word }}</span> - added at {{ newWords.times }}</p>
+        {% endfor %}
+      </div>
+    </div>
+  </body>
+</html>
