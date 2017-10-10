@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Amadon Store</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'checkout/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'checkout/css/bootstrap-responsive.min.css' %}">
+    <link rel="stylesheet" href="{% static 'checkout/css/styles.css' %}">
+  </head>
+  <body>
+    <main class="wrap">
+      <h1>Amadon Store</h1>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+            <tr>
+              <td>{{ product.name }}</td>
+              <td>${{ product.price|floatformat:2 }}</td>
+              <td>
+                <form action="/amadon/buy/" method="post" name="purchases">
+                  {% csrf_token %}
+                  <span class="group"><input type="number" name="qty" min="1" max="20" value="1"></span>
+                  <input type="hidden" name="product_id" value="{{ forloop.counter }}">
+                  <input class="btn-primary" id="submit" name="submit" type="submit" value="Buy">
+                </form>
+              </td>
+            </tr>
+          {% endfor%}
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
