@@ -12,7 +12,7 @@ def new(request):
 
 # create new blog
 def create(request):
-    return redirect ('/')
+    return redirect ('/blogs')
 
 # display blog
 def show(request, blog_id):
