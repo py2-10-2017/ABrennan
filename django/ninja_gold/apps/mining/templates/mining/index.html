@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ninja Gold</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'mining/css/styles.css' %}">
+    <script src="{% static 'mining/js/global.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Ninja Gold</h1>
+      {% if request.session.check == 'loser' %}
+        <h2>You lost everything!</h2>
+      {% endif %}
+      <p class="gold">Your Gold: <span>{{ request.session.gold }}</span></p>
+      {% if request.session.check == 'loser' %}
+        <blockquote cite="http://www.wiseoldsayings.com/gold-quotes/">
+          "{{ quote.1 }}"
+            <span> - {{ quote.0 }}</span>
+        </blockquote>
+      {% endif %}
+      <img id="car" src="{% static 'mining/images/mustang.png' %}" alt="Car" style="left:{{ request.session.position }}">
+      {% if request.session.check == 'winner' %}
+        {% for location in locations %}
+          <div class="location">
+            <img src="{% static 'mining/images/'|add:location.name|add:'.jpg' %}" alt="{{ location.name }}">
+            <form id="{{ location.name }}" action="/process/{{ location.name }}" method="post">
+              {% csrf_token %}
+              <input type="submit" name="{{ location.name }}" value="Gather" onclick="moveCar('{{ location.name }}')">
+            </form>
+          </div>
+        {% endfor %}
+      {% endif %}
+      <p class='activities'>Activities:</p>
+      <div id="activities">
+        {{ request.session.out|safe }}
+      </div>
+      {% if request.session.check == 'loser' %}
+          <form id="clear" action="/reset/" method="post">
+            {% csrf_token %}
+            <input type="submit" name="reset" value="Play Again">
+          </form>
+      {% endif %}
+    </div>
+  </body>
+</html>
