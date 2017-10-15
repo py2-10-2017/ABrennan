@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Sports Leagues</title>
+	</head>
+	<body>
+		<h1>Leagues</h1>
+		<ol>
+			{% for league in leagues %}
+				<li>{{league.name}}</li>
+			{% empty %}
+				<p>No leagues found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</ol>
+		<h1>Teams</h1>
+		<ol>
+			{% for team in teams %}
+				<li>{{team.location}} {{team.team_name}}</li>
+			{% empty %}
+				<p>No teams found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</ol>
+		<h1>Players</h1>
+		<ol>
+			{% for player in players %}
+				<li>{{player.first_name}} {{player.last_name}}</li>
+			{% empty %}
+				<p>No teams found.  Try <code>python manage.py loaddata data.json</code>, or, if that doesn't work, going <a href="{% url 'make_data' %}">here</a> (but be prepared to wait).</p>
+			{% endfor %}
+		</ol>
+		<h1>All Baseball Leagues</h1>
+		<ol>
+			{% for baseball in baseballs %}
+				<li>{{baseball.name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Womens' Leagues</h1>
+		<ol>
+			{% for woman in womens %}
+				<li>{{woman.name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Leagues Where Sport is Any Type of Hockey</h1>
+		<ol>
+			{% for hockey in hockeys %}
+				<li>{{hockey.name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Leagues Where Sport is Something Other Than Football</h1>
+		<ol>
+			{% for nofootball in nofootballs %}
+				<li>{{nofootball.name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Leagues That Call Themselves Conferences</h1>
+		<ol>
+			{% for conference in conferences %}
+				<li>{{conference.name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Leagues in the Atlantic Region</h1>
+		<ol>
+			{% for altantic in atlantics %}
+				<li>{{altantic.name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Teams Based in Dallas</h1>
+		<ol>
+			{% for dallas in dallases %}
+				<li>{{dallas.team_name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Teams Named the Raptors</h1>
+		<ol>
+			{% for raptor in raptors %}
+				<li>{{raptor.location}} {{raptor.team_name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Teams Whose Location Includes 'City'</h1>
+		<ol>
+			{% for city in cities %}
+				<li>{{city.location}} {{city.team_name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Teams Whose Names Begin with 'T'</h1>
+		<ol>
+			{% for tee in tees %}
+				<li>{{tee.team_name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Teams, Ordered Alphabetically by Location</h1>
+		<ol>
+			{% for location in locations %}
+				<li>{{location.location}} {{location.team_name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Teams, Ordered by Team Name in Reverse Alphabetical Order</h1>
+		<ol>
+			{% for alphabetical in alphabeticals %}
+				<li>{{alphabetical.team_name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>Every Player with Last Name 'Cooper'</h1>
+		<ol>
+			{% for cooper in coopers %}
+				<li>{{cooper.first_name}} {{cooper.last_name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>Every Player with First Name 'Joshua'</h1>
+		<ol>
+			{% for joshua in joshuas %}
+				<li>{{joshua.first_name}} {{joshua.last_name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>Every Player with Last Name 'Cooper' Except Those with 'Joshua' as the First Name</h1>
+		<ol>
+			{% for nojoshcooper in nojoshcoopers %}
+				<li>{{nojoshcooper.first_name}} {{nojoshcooper.last_name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Players with the First Name 'Alexander' or First Name 'Wyatt'</h1>
+		<ol>
+			{% for alexwyatt in alexwyatts %}
+				<li>{{alexwyatt.first_name}} {{alexwyatt.last_name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+	</body>
+</html>
