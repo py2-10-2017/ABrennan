@@ -33,7 +33,7 @@
 			{% for baseball in baseballs %}
 				<li>{{baseball.name}}</li>
 			{% empty %}
-				<p>No teams found.</p>
+				<p>No leagues found.</p>
 			{% endfor %}
 		</ol>
 		<h1>All Womens' Leagues</h1>
@@ -41,7 +41,7 @@
 			{% for woman in womens %}
 				<li>{{woman.name}}</li>
 			{% empty %}
-				<p>No teams found.</p>
+				<p>No leagues found.</p>
 			{% endfor %}
 		</ol>
 		<h1>All Leagues Where Sport is Any Type of Hockey</h1>
@@ -49,7 +49,7 @@
 			{% for hockey in hockeys %}
 				<li>{{hockey.name}}</li>
 			{% empty %}
-				<p>No teams found.</p>
+				<p>No leagues found.</p>
 			{% endfor %}
 		</ol>
 		<h1>All Leagues Where Sport is Something Other Than Football</h1>
@@ -57,7 +57,7 @@
 			{% for nofootball in nofootballs %}
 				<li>{{nofootball.name}}</li>
 			{% empty %}
-				<p>No teams found.</p>
+				<p>No leagues found.</p>
 			{% endfor %}
 		</ol>
 		<h1>All Leagues That Call Themselves Conferences</h1>
@@ -65,7 +65,7 @@
 			{% for conference in conferences %}
 				<li>{{conference.name}}</li>
 			{% empty %}
-				<p>No teams found.</p>
+				<p>No leagues found.</p>
 			{% endfor %}
 		</ol>
 		<h1>All Leagues in the Atlantic Region</h1>
@@ -73,7 +73,7 @@
 			{% for altantic in atlantics %}
 				<li>{{altantic.name}}</li>
 			{% empty %}
-				<p>No teams found.</p>
+				<p>No leagues found.</p>
 			{% endfor %}
 		</ol>
 		<h1>All Teams Based in Dallas</h1>
@@ -129,7 +129,7 @@
 			{% for cooper in coopers %}
 				<li>{{cooper.first_name}} {{cooper.last_name}}</li>
 			{% empty %}
-				<p>No teams found.</p>
+				<p>No players found.</p>
 			{% endfor %}
 		</ol>
 		<h1>Every Player with First Name 'Joshua'</h1>
@@ -137,7 +137,7 @@
 			{% for joshua in joshuas %}
 				<li>{{joshua.first_name}} {{joshua.last_name}}</li>
 			{% empty %}
-				<p>No teams found.</p>
+				<p>No players found.</p>
 			{% endfor %}
 		</ol>
 		<h1>Every Player with Last Name 'Cooper' Except Those with 'Joshua' as the First Name</h1>
@@ -145,7 +145,7 @@
 			{% for nojoshcooper in nojoshcoopers %}
 				<li>{{nojoshcooper.first_name}} {{nojoshcooper.last_name}}</li>
 			{% empty %}
-				<p>No teams found.</p>
+				<p>No players found.</p>
 			{% endfor %}
 		</ol>
 		<h1>All Players with the First Name 'Alexander' or First Name 'Wyatt'</h1>
@@ -153,7 +153,127 @@
 			{% for alexwyatt in alexwyatts %}
 				<li>{{alexwyatt.first_name}} {{alexwyatt.last_name}}</li>
 			{% empty %}
+				<p>No players found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Teams in the Atlantic Soccer Conference</h1>
+		<ol>
+			{% for atlanticsoccer in atlanticsoccers %}
+				<li>{{atlanticsoccer.sport}} {{atlanticsoccer.location}} {{atlanticsoccer.team_name}}</li>
+			{% empty %}
 				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All (Current) Players on the Boston Penguins</h1>
+		<ol>
+			{% for penguin in penguins %}
+				<li>{{penguin.first_name}} {{penguin.last_name}}</li>
+			{% empty %}
+				<p>No players found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All (Current) Players in the International Collegiate Baseball Conference</h1>
+		<ol>
+			{% for baseballconference in baseballconferences %}
+				<li>{{baseballconference.first_name}} {{baseballconference.last_name}}</li>
+			{% empty %}
+				<p>No players found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All (Current) Players in the American Conference of Amateur Football with Last Name 'Lopez'</h1>
+		<ol>
+			{% for footballopez in footballopezes %}
+				<li>{{footballopez.first_name}} {{footballopez.last_name}}</li>
+			{% empty %}
+				<p>No players found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Football Players</h1>
+		<ol>
+			{% for footballer in footballers %}
+				<li>{{footballer.first_name}} {{footballer.last_name}}</li>
+			{% empty %}
+				<p>No players found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Teams with a (Current) Player Name 'Sophia'</h1>
+		<ol>
+			{% for sophiateam in sophiateams %}
+				<li>{{sophiateam.team_name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Leagues with a (Current) Player Name 'Sophia'</h1>
+		<ol>
+			{% for sophialeague in sophialeagues %}
+				<li>{{sophialeague.name}}</li>
+			{% empty %}
+				<p>No leagues found.</p>
+			{% endfor %}
+		</ol>
+		<h1>Everyone with the Last Name 'Flores' Who Doesn't (Currently) Play for the Washington Roughriders</h1>
+		<ol>
+			{% for flores in floreses %}
+				<li>{{flores.first_name}} {{flores.last_name}}</li>
+			{% empty %}
+				<p>No players found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Teams, Past and Present, That Samuel Evans Has Played With</h1>
+		<ol>
+			{% for samuel in samuels %}
+				<li>{{samuel.team_name}} {{samuel.last_name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Players, Past and Present, with the Manitoba Tiger-Cats</h1>
+		<ol>
+			{% for manitoba in manitobas %}
+				<li>{{manitoba.first_name}} {{manitoba.last_name}}</li>
+			{% empty %}
+				<p>No players found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Players Who Were Formerly (But Aren't Currently) with the Wichita Vikings</h1>
+		<ol>
+			{% for viking in vikings %}
+				<li>{{viking.first_name}} {{viking.last_name}}</li>
+			{% empty %}
+				<p>No players found.</p>
+			{% endfor %}
+		</ol>
+		<h1>Every Team that Jacob Gray Played For Before He Joined the Oregon Colts</h1>
+		<ol>
+			{% for grayteam in grayteams %}
+				<li>{{grayteam.team_name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>Everyone Named 'Joshua' Who Has Ever Played in the Atlantic Federation of Amateur Baseball Players</h1>
+		<ol>
+			{% for joshuaatlantic in joshuaatlantics %}
+				<li>{{joshuaatlantic.first_name}} {{joshuaatlantic.last_name}}</li>
+			{% empty %}
+				<p>No players found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Teams that Have Had 12 or More Players, Past and Present</h1>
+		<ol>
+			{% for twelve in twelves %}
+				<li>{{twelve.team_name}}</li>
+			{% empty %}
+				<p>No teams found.</p>
+			{% endfor %}
+		</ol>
+		<h1>All Players and Count of Teams Played For, Sorted by the Number of Teams They've Played For</h1>
+		<ol>
+			{% for playerteam in playerteams %}
+				<li>{{playerteam.first_name}} {{playerteam.last_name}} - {{ playerteam.player_count }}</li>
+			{% empty %}
+				<p>No players found.</p>
 			{% endfor %}
 		</ol>
 	</body>
