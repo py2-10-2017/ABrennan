@@ -1,0 +1,21 @@
+{% extends "users/base.html" %}
+{% block title %}{{page_title}}{% endblock %}
+{% block content %}
+    <h1>User #{{ user.id }}</h1>
+    {% if messages %}
+      {% for message in messages %}
+        <p class="messages">{{ message }}</p>
+      {% endfor %}
+    {% endif %}
+    <div class="main">
+      <p><strong>Full Name:</strong> {{ user.first_name }} {{ user.last_name }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>Created:</strong> {{ user.created_at|date:"M dS, Y" }}</p>
+      <div class="clear"></div>
+      <div class="meta">
+        <a href="/users/{{ user.id }}/edit">Edit</a>&nbsp;&nbsp;|&nbsp;
+        <a href="/users/{{ user.id }}/destroy">Delete</a>
+      </div>
+      <div class="logout"><a href="/users">View All Users</a></div>
+    </div>
+{% endblock %}
