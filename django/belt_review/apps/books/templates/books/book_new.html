@@ -1,0 +1,53 @@
+{% extends "users/base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+  <div class="container">
+    <div class="row">
+      <h1>{{title}}</h1>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        {% if messages %}
+        <div class="error">
+            {% for message in messages %}
+              {% if message.tags == 'books error' %}<p>{{ message }}</p>{% endif %}
+            {% endfor %}
+        </div>
+        {% endif %}
+        <form action="/books/create" method="POST" role="form">
+          {% csrf_token %}
+          <div class="form-group">
+            <label class="sr-only" for="title">Book Title</label>
+            <input id="title" type="text" class="form-control" name="title" placeholder="Book title">
+          </div>
+          <p><strong>Author:</strong></p>
+          <div class="form-group">
+            <label for="author">Choose from the list:</label>
+            <select class="form-control" id="author" name="author">
+                <option value="none">-- select author --</option>
+                {% for author in authors %}
+                  <option value="{{author.name}}">{{author.name}}</option>
+                {% endfor %}
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="new_author">Or add a new author:</label>
+            <input id="new_author" type="text" class="form-control" name="new_author" placeholder="Author's name">
+          </div>
+          <div class="form-group">
+            <label for="review">Review:</label>
+            <textarea id="review" class="form-control" name="review" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="rating">Rating</label>
+            <input id="rating" name="rating" type="number" min="1" max="5"> stars
+          </div>
+          <button type="submit" class="btn btn-primary">Add Book and Review</button>
+        </form>
+      </div>
+    </div>
+  </div>
+{% endblock %}

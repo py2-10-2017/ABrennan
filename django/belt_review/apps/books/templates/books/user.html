@@ -1,0 +1,28 @@
+{% extends "users/base.html" %}
+{% block title %}{{page_title}}{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <h1>User Alias:
+      {% if user.user.alias %}
+        {{ user.user.alias }}
+      {% else %}
+        None
+      {% endif %}</h1>
+  </div>
+  <div>
+    <h3>User Information:</h3>
+    <p>Name: {{ user.user.name }}</p>
+    <p>Email: {{ user.user.email }}</p>
+    <p>Total reviews: {{count}}</p>
+  </div>
+  <div>
+    <h3>Posted reviews on the following books:</h3>
+    <ul>
+      {% for review in reviews %}
+          <li><a href='/books/{{ review.id }}'>{{ review.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
