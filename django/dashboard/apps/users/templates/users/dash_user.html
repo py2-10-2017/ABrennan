@@ -1,0 +1,44 @@
+{% extends "users/base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <h1>{{title}}</h1>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Created</th>
+            <th scope="col">User Level</th>
+            {% if level == 9 %}
+              <th scope="col">Actions</th>
+            {% endif %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+            <tr>
+              <td>{{ user.id }}</td>
+              <td><a href="/users/show/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a></td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.created_at }}</td>
+              <td>
+                {% if user.level == 9 %}
+                  admin
+                {% else %}
+                  normal
+                {% endif %}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

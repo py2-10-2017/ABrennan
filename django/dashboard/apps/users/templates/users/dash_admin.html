@@ -1,0 +1,77 @@
+{% extends "users/base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+  <div class="container">
+    <div class="row">
+      <h1>{{title}}</h1>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <p style="text-align:right"><a class="btn btn-primary right" href="/users/new" role="button">Add New User</a></p>
+    </div>
+    {% if messages %}
+      <div class="error">
+        {% for message in messages %}
+          {% if message.tags == 'delete error' %}<p>{{ message }}</p>{% endif %}
+        {% endfor %}
+      </div>
+    {% endif %}
+    <div class="row">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Created</th>
+            <th scope="col">User Level</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+            <tr>
+              <td>{{ user.id }}</td>
+              <td><a href="/users/show/{{ user.id }}">{{ user.first_name }} {{ user.last_name }}</a></td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.created_at }}</td>
+              <td>
+                {% if user.level == 9 %}
+                  admin
+                {% else %}
+                  normal
+                {% endif %}</td>
+                <td><a href="/users/edit/{{ user.id }}">edit</a>
+                  {% if user.id != request.session.id %}
+                    &nbsp;&nbsp;|&nbsp;&nbsp;<a href="/users/delete/{{ user.id }}" data-user-id="{{ user.id }}" data-toggle="modal" data-target="#delete-user">remove</a>
+                  {% endif %}
+                </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="delete-user" tabindex="-1" role="dialog" aria-labelledby="delete-user" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <p>Are you sure you want to delete this user?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+        <button id="delete" type="button" class="btn btn-primary">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

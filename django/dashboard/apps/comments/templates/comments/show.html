@@ -1,0 +1,77 @@
+{% extends "users/base.html" %}
+{% block title %}{{page_title}}{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+  </div>
+  <div class="row">
+    <div class="col-3">Registered at:</div>
+    <div class="col-9">{{ user.created_at }}</div>
+  </div>
+  <div class="row">
+    <div class="col-3">User ID:</div>
+    <div class="col-9">{{ user.id }}</div>
+  </div>
+  <div class="row">
+    <div class="col-3">Email address:</div>
+    <div class="col-9">{{ user.email }}</div>
+  </div>
+  <div class="row">
+    <div class="col-3">Description:</div>
+    <div class="col-9">{{ user.desc }}</div>
+  </div>
+</div>
+<div class="container">
+    {% if messages %}
+      <div class="error">
+          {% for message in messages %}
+            {% if message.tags == 'message error' %}<p>{{ message }}</p>{% endif %}
+          {% endfor %}
+      </div>
+    {% endif %}
+    {% if user.id != request.session.id %}
+      <form action="/messages/{{user.id}}/new" method="POST" role="form">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="message">Leave a message for {{ user.first_name }}</label>
+          <textarea id="message" class="form-control" name="message" rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Post</button>
+      </form>
+    {% endif %}
+</div>
+{% if msgs %}
+  {% for msg in msgs %}
+    <div class="container message">
+      <div class="row">
+        <a href="/users/show/{{ msg.commenter.id }}">{{ msg.commenter.first_name }} {{ msg.commenter.last_name }}</a>&nbsp;wrote on {{ msg.created_at }}:
+      </div>
+      <div class="row">
+        {{ msg.message }}
+      </div>
+    </div>
+    {% for comment in comments %}
+      <div class="container comment">
+        <div class="row">
+          <a href="/users/show/{{ msg.commenter.id }}">{{ comment.commenter.first_name }} {{ comment.commenter.last_name }}</a>&nbsp;wrote on {{ comment.created_at }}:
+        </div>
+        <div class="row">
+          {{ comment.comment }}
+        </div>
+      </div>
+    {% endfor %}
+    <div class="container comment">
+        <form action="/comments/{{user.id}}/new/{{msg.id}}" method="POST" role="form">
+          {% csrf_token %}
+          <div class="form-group">
+            <label class=sr-only for="comment">Leave a reply</label>
+            <textarea class="form-control" name="comment" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Reply</button>
+        </form>
+    </div>
+  {% endfor %}
+{% endif %}
+
+{% endblock %}
