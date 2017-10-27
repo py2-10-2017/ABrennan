@@ -12,6 +12,7 @@
             var data = $(this).serialize()
             var url = $(this).attr("action")
             $.post(url, data, function(request){
+              console.log(request);
               $('#posts').append(request);
             })
             return false
